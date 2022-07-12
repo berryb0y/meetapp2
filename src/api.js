@@ -91,7 +91,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const results = await axios.get(
-        "YOUR_SERVERLESS_GET_AUTH_URL_ENDPOINT"
+        "https://sowjdlfeic.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
