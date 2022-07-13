@@ -18,9 +18,7 @@ class NumberOfEvents extends Component {
         }
         this.props.updateNumberOfEvents(event.target.value);
       };
-
     render () {
-
         return (
             <div className='numberOfEvents'>
                 <input 
