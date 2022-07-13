@@ -41,7 +41,7 @@ class App extends Component {
       }
 
       this.setState({
-        events: locationEvents.slice(0, eventCount),
+        events: locationEvents,
         currentLocation: location
       });
     });
