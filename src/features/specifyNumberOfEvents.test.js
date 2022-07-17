@@ -1,35 +1,45 @@
-import { defineFeature, loadFeature } from 'jest-cucumber';
-import { mount } from 'enzyme';
+import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
+import { mount } from 'enzyme';
 import App from '../App';
+import { mockData } from '../mock-data';
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
-defineFeature(feature, (test) => {
-    let AppWrapper;
+defineFeature(feature, test => {
 
-    test("When user hasn't specified a number, 2 is the default number", ({ given, when, then }) => {
-        given('the user is on the main page', async () => {
-            AppWrapper = await mount(<App />);
-        });
-        when('the user has not specified the numbers of events', () => {
-            AppWrapper.update();
-        });
-        then('the default number of displayed events will be 2', () => {
-            expect(AppWrapper.find('.event')).toHaveLength(2);
-        });
-    });
-    test('User can change the number of events they want to see', ({ given, when, then }) => {
-        given('the user is on the main page', async () => {
-            AppWrapper = await mount(<App />)
-        });
-        when('the user changes the number of events', () => {
-            AppWrapper.find('.inputNumberOfEvents').simulate('change', {
-                target: { value: 1 },
-              });
-        });
-        then('the number of events will change accordingly', () => {
-            expect(AppWrapper.state('numberOfEvents')).toEqual(1);
-        });
-    });    
+    let AppWrapper;
+    test('When user hasnt specified a number, 32 is the default number.', 
+        ({ given, when, then }) => {
+            given('the user has started a search', () => { });
+
+            when('the users did not specify a number', () => { 
+                AppWrapper = mount(<App />);
+            });
+
+            then('thirtytwo should be the default number', () => {
+                AppWrapper.update();
+                expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+            });
+        }
+    );
+
+  
+    test('User can change the number of events they want to see.', 
+        ({ given, when, then }) => {
+            given('the user has started a search', async () => {
+                AppWrapper = await mount(<App />);
+            });
+
+            when('the user enters a number into the \'show max\' field', () => {
+                AppWrapper.update();
+                AppWrapper.find('.inputNumberOfEvents').simulate('change', {target: {value: 2}})
+            });
+
+            then('the number of listed events should update accordingly', () => {
+                expect(AppWrapper.find('.event')).toHaveLength(2);
+            });
+        }
+    );
+
 });

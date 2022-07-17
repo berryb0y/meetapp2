@@ -1,11 +1,12 @@
-Feature: Specify number of Events
 
-Scenario: When user hasn't specified a number, 2 is the default number
-Given the user is on the main page
-When the user has not specified the numbers of events 
-Then the default number of displayed events will be 2
+Feature: Specify number of events
 
-Scenario: User can change the number of events they want to see
-Given the user is on the main page
-When the user changes the number of events 
-Then the number of events will change accordingly
+Scenario: When user hasnt specified a number, 32 is the default number.
+Given the user has started a search
+When the users did not specify a number
+Then thirtytwo should be the default number
+	
+Scenario: User can change the number of events they want to see.
+Given the user has started a search
+When the user enters a number into the 'show max' field
+Then the number of listed events should update accordingly
