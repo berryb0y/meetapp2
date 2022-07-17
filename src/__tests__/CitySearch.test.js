@@ -72,8 +72,8 @@ describe('<CitySearch /> component', () => {
     expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
   });
 
-
-
+});
+describe('<App /> integration', () => {
 
 
   test('App passes "locations" state as a prop to CitySearch', () => {
