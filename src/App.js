@@ -36,7 +36,7 @@ class App extends Component {
       if(eventCount) {
         locationEvents = locationEvents.slice(0, eventCount);
         this.setState({
-          numberOfEvents: eventCount
+          NumberOfEvents: eventCount
         })
       }  
 
