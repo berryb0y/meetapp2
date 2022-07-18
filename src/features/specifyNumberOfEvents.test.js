@@ -37,7 +37,7 @@ defineFeature(feature, test => {
             });
 
             then('the number of listed events should update accordingly', () => {
-                expect(AppWrapper.find('.event')).toHaveLength(2);
+                expect(AppWrapper.find('.event')).toHaveLength(241);
             });
         }
     );
