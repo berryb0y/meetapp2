@@ -1,6 +1,7 @@
 import React from 'react';
 import NumberOfEvents from '../NumberOfEvents';
 import { shallow, mount } from 'enzyme';
+import App from '../App';
 
 describe('<NumberOfEvents /> component', () => {
 
@@ -16,6 +17,15 @@ describe('<NumberOfEvents /> component', () => {
     test('change number of events when input changes', () => {
         NumberOfEventsWrapper.setState({ numberOfEvents: 32 });
         expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual(32);
+    });
+    test('get expected list of events when number of events is updated', async () => {
+        const AppWrapper = mount(<App />);
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents)
+        await NumberOfEventsWrapper.instance().handleInputChanged({
+            target: { value: 1 },
+        });
+        expect(AppWrapper.state('events')).toHaveLength(1);
+        AppWrapper.mount();
     });
 
 })

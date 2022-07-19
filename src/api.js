@@ -43,26 +43,26 @@ const checkToken = async (accessToken) => {
 export const getEvents = async () => {
   NProgress.start();
 
-  if (window.location.href.startsWith("http://localhost", "https://berryb0y")) {
-    NProgress.done();
-    return mockData;
-  }
+  // if (window.location.href.startsWith("http://localhost")) {//test here//d
+  //   NProgress.done();
+  //   return mockData;
+  // }
 
 
-  const token = await getAccessToken();
+  // const token = await getAccessToken();
 
-  if (token) {
-    removeQuery();
-    const url = 'https://sowjdlfeic.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/' + token;
-    const result = await axios.get(url);
-    if (result.data) {
-      var locations = extractLocations(result.data.events);
-      localStorage.setItem("lastEvents", JSON.stringify(result.data));
-      localStorage.setItem("locations", JSON.stringify(locations));
-    }
+  // if (token) {
+  //   removeQuery();
+  //   const url = 'https://sowjdlfeic.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/' + token;
+  //   const result = await axios.get(url);
+  //   if (result.data) {
+  //     var locations = extractLocations(result.data.events);
+  //     localStorage.setItem("lastEvents", JSON.stringify(result.data));
+  //     localStorage.setItem("locations", JSON.stringify(locations));
+  //   }
     NProgress.done();
     return result.data.events;
-  }
+  // }
 };
 
 const getToken = async (code) => {
