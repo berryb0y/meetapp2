@@ -16,19 +16,19 @@ export const extractLocations = (events) => {
   return locations;
 };
 
-const removeQuery = () => {
-  if (window.history.pushState && window.location.pathname) {
-    var newurl =
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl);
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
+// const removeQuery = () => {
+//   if (window.history.pushState && window.location.pathname) {
+//     var newurl =
+//       window.location.protocol +
+//       "//" +
+//       window.location.host +
+//       window.location.pathname;
+//     window.history.pushState("", "", newurl);
+//   } else {
+//     newurl = window.location.protocol + "//" + window.location.host;
+//     window.history.pushState("", "", newurl);
+//   }
+// };
 
 const checkToken = async (accessToken) => {
   const result = await fetch(
@@ -69,7 +69,7 @@ export const getEvents = async () => {
 const getToken = async (code) => {
   try {
       const encodeCode = encodeURIComponent(code);
-
+      //eslint-disable-next-line
       const response = await fetch( 'https://sowjdlfeic.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
       if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
